@@ -99,6 +99,77 @@ def restart_game():
     # limpiar respuestas previas
     for i in range(len(QUESTIONS)):
         key = f"q_{i}"
+        if key in st.session_state:
+            del st.session_state[key]
+
+
+# -----------------------------
+# UI principal
+# -----------------------------
+st.title("🎤 Trivia de Farándula Peruana")
+st.markdown("### ¿Cuánto sabes de los momentos más icónicos de la farándula en Perú?")
+st.write("Responde las 10 preguntas. Las alternativas cambian de orden en cada partida 👀")
+
+if st.button("🔄 Nueva partida"):
+    restart_game()
+    st.rerun()
+
+st.divider()
+
+for i, q in enumerate(st.session_state.question_order):
+    st.subheader(f"Pregunta {i + 1}")
+    st.radio(
+        q["question"],
+        st.session_state.shuffled_options[i],
+        key=f"q_{i}",
+        index=None,
+    )
+    st.write("")
+
+
+if st.button("✅ Finalizar Trivia"):
+    st.session_state.submitted = True
+
+
+if st.session_state.submitted:
+    score = 0
+
+    st.divider()
+    st.header("📊 Resultados")
+
+    for i, q in enumerate(st.session_state.question_order):
+        user_answer = st.session_state.get(f"q_{i}")
+        correct_answer = q["answer"]
+
+        if user_answer == correct_answer:
+            score += 1
+            st.success(f"Pregunta {i + 1}: Correcto ✅")
+        else:
+            st.error(
+                f"Pregunta {i + 1}: Incorrecto ❌ | Respuesta correcta: {correct_answer}"
+            )
+
+    st.markdown(f"## Puntaje final: **{score}/10**")
+
+    if score == 10:
+        st.balloons()
+        st.snow()
+        st.success("🎉 ¡PERFECTO! ¡Acertaste todo! Eres una leyenda de la farándula peruana 👑")
+        st.markdown(
+            """
+            <div style='text-align:center; font-size:28px; padding:20px;'>
+                ✨🏆 FAMA TOTAL 🏆✨<br>
+                ¡Nivel experto desbloqueado!
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    elif score >= 7:
+        st.info("👏 Muy bien, casi eres reportero de espectáculos.")
+    elif score >= 4:
+        st.warning("😄 Vas bien, pero necesitas más chismecito televisivo.")
+    else:
+        st.warning("📺 Hora de ver más farándula peruana y volver a intentarlo.")
 
 st.markdown("---")
 st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
