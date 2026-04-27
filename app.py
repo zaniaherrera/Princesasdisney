@@ -1,114 +1,104 @@
 import streamlit as st
 import random
 
-st.set_page_config(
-    page_title="Trivia de Princesas Disney",
-    page_icon="👑",
-    layout="centered"
-)
+st.set_page_config(page_title="Trivia de Farándula Peruana", page_icon="🎤", layout="centered")
 
+# -----------------------------
 # Banco de preguntas
+# -----------------------------
 QUESTIONS = [
     {
-        "question": "¿Cómo se llama la princesa de la película 'La Bella y la Bestia'?",
-        "options": ["Bella", "Ariel", "Aurora", "Elsa"],
-        "answer": "Bella"
+        "question": "¿Qué frase icónica popularizó Laura Bozzo en televisión?",
+        "options": ["¡Que pase el desgraciado!", "¡Fuera de aquí!", "¡No me grites!", "¡Esto es el colmo!"],
+        "answer": "¡Que pase el desgraciado!",
     },
     {
-        "question": "¿Qué princesa vive en un castillo de hielo?",
-        "options": ["Anna", "Elsa", "Rapunzel", "Mérida"],
-        "answer": "Elsa"
+        "question": "¿Qué cantante peruana es conocida como 'La Tigresa del Oriente'?",
+        "options": ["Judith Bustos", "Gisela Valcárcel", "Yola Polastri", "Monique Pardo"],
+        "answer": "Judith Bustos",
     },
     {
-        "question": "¿Qué princesa fue criada por siete enanitos?",
-        "options": ["Blancanieves", "Cenicienta", "Mulán", "Jazmín"],
-        "answer": "Blancanieves"
+        "question": "¿Quién fue conocida como la 'Señito' de la televisión peruana?",
+        "options": ["Gisela Valcárcel", "Magaly Medina", "Maju Mantilla", "Rebeca Escribens"],
+        "answer": "Gisela Valcárcel",
     },
     {
-        "question": "¿Qué princesa participa en una competencia de tiro con arco?",
-        "options": ["Mérida", "Tiana", "Aurora", "Moana"],
-        "answer": "Mérida"
+        "question": "¿Qué conductora es famosa por su programa de espectáculos y los 'ampays'?",
+        "options": ["Magaly Medina", "Johanna San Miguel", "Tula Rodríguez", "Sheyla Rojas"],
+        "answer": "Magaly Medina",
     },
     {
-        "question": "¿Qué princesa navega por el océano para salvar a su pueblo?",
-        "options": ["Moana", "Pocahontas", "Tiana", "Aurora"],
-        "answer": "Moana"
-    }
+        "question": "¿Qué personaje infantil fue interpretado por Yola Polastri?",
+        "options": ["La chica de la tele", "La reina de los niños", "La tía Yola", "La muñeca feliz"],
+        "answer": "La tía Yola",
+    },
+    {
+        "question": "¿Qué cantante peruano hizo famosa la frase 'No se llama amor'?",
+        "options": ["Pedro Suárez-Vértiz", "Gian Marco", "Christian Meier", "Raúl Romero"],
+        "answer": "Pedro Suárez-Vértiz",
+    },
+    {
+        "question": "¿Qué exfutbolista y figura mediática estuvo casado con Melissa Klug?",
+        "options": ["Jefferson Farfán", "Paolo Guerrero", "Roberto Martínez", "Juan Manuel Vargas"],
+        "answer": "Jefferson Farfán",
+    },
+    {
+        "question": "¿Qué conductor hizo famosa la frase 'Habacilar'?",
+        "options": ["Raúl Romero", "Adolfo Aguilar", "Bruno Pinasco", "Carlos Galdós"],
+        "answer": "Raúl Romero",
+    },
+    {
+        "question": "¿Qué vedette fue protagonista de múltiples escándalos mediáticos en los 2000?",
+        "options": ["Susy Díaz", "Maricielo Effio", "Tilsa Lozano", "Milett Figueroa"],
+        "answer": "Susy Díaz",
+    },
+    {
+        "question": "¿Qué frase se asocia popularmente con Susy Díaz?",
+        "options": ["Vive la vida", "Me amo y no me importa", "Lo que pasa, pasa", "Todo por amor"],
+        "answer": "Me amo y no me importa",
+    },
 ]
 
 
-def initialize_game():
-    """Inicializa o reinicia el juego con opciones aleatorias."""
-    randomized_questions = []
+# -----------------------------
+# Estado inicial
+# -----------------------------
+if "started" not in st.session_state:
+    st.session_state.started = False
 
-    for q in QUESTIONS:
-        shuffled_options = q["options"][:]
-        random.shuffle(shuffled_options)
+if "question_order" not in st.session_state:
+    st.session_state.question_order = random.sample(QUESTIONS, len(QUESTIONS))
 
-        randomized_questions.append({
-            "question": q["question"],
-            "options": shuffled_options,
-            "answer": q["answer"]
-        })
+if "shuffled_options" not in st.session_state:
+    shuffled = []
+    for q in st.session_state.question_order:
+        opts = q["options"][:]
+        random.shuffle(opts)
+        shuffled.append(opts)
+    st.session_state.shuffled_options = shuffled
 
-    st.session_state.questions = randomized_questions
+if "submitted" not in st.session_state:
     st.session_state.submitted = False
 
 
-if "questions" not in st.session_state:
-    initialize_game()
+# -----------------------------
+# Función reiniciar
+# -----------------------------
+def restart_game():
+    st.session_state.question_order = random.sample(QUESTIONS, len(QUESTIONS))
 
-st.title("👑 Trivia de Princesas Disney")
-st.markdown("### Responde las 5 preguntas y descubre si eres un verdadero fan Disney ✨")
+    shuffled = []
+    for q in st.session_state.question_order:
+        opts = q["options"][:]
+        random.shuffle(opts)
+        shuffled.append(opts)
 
-with st.form("quiz_form"):
-    user_answers = []
+    st.session_state.shuffled_options = shuffled
+    st.session_state.submitted = False
 
-    for idx, q in enumerate(st.session_state.questions, start=1):
-        answer = st.radio(
-            f"{idx}. {q['question']}",
-            q["options"],
-            key=f"q_{idx}"
-        )
-        user_answers.append(answer)
-
-    submitted = st.form_submit_button("Enviar respuestas")
-
-if submitted:
-    score = 0
-
-    st.divider()
-    st.subheader("📋 Resultados")
-
-    for i, q in enumerate(st.session_state.questions):
-        correct = user_answers[i] == q["answer"]
-
-        if correct:
-            score += 1
-            st.success(f"Pregunta {i+1}: ¡Correcto! ✅")
-        else:
-            st.error(
-                f"Pregunta {i+1}: Incorrecto ❌ | Respuesta correcta: {q['answer']}"
-            )
-
-    st.markdown(f"## Puntaje final: **{score}/5**")
-
-    if score == 5:
-        st.balloons()
-        st.success("🎉 ¡FELICIDADES! ¡Acertaste todas las preguntas! Eres realeza Disney 👑✨")
-        st.markdown("### 🌟 Premio especial desbloqueado 🌟")
-        st.markdown("## 🏆 ¡Princesa experta certificada! 🏆")
-    elif score >= 3:
-        st.info("✨ ¡Muy bien! Conoces bastante sobre las princesas Disney.")
-    else:
-        st.warning("💫 Sigue practicando, aún puedes convertirte en experto Disney.")
-
-    if st.button("🔄 Jugar nuevamente"):
-        initialize_game()
-        st.rerun()
-
-st.markdown("---")
-st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
+    # limpiar respuestas previas
+    for i in range(len(QUESTIONS)):
+        key = f"q_{i}"
 
 st.markdown("---")
 st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
