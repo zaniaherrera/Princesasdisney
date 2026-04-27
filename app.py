@@ -10,29 +10,29 @@ st.set_page_config(
 # Banco de preguntas
 QUESTIONS = [
     {
-        "question": "¿Cómo se llama la princesa de la película 'La Sirenita'?",
-        "options": ["Ariel", "Bella", "Jazmín", "Rapunzel"],
-        "answer": "Ariel"
+        "question": "¿Cómo se llama la princesa de la película 'La Bella y la Bestia'?",
+        "options": ["Bella", "Ariel", "Aurora", "Elsa"],
+        "answer": "Bella"
     },
     {
-        "question": "¿Qué princesa tiene como mejor amigo a un tigre llamado Rajah?",
-        "options": ["Mulán", "Jazmín", "Cenicienta", "Blancanieves"],
-        "answer": "Jazmín"
+        "question": "¿Qué princesa vive en un castillo de hielo?",
+        "options": ["Anna", "Elsa", "Rapunzel", "Mérida"],
+        "answer": "Elsa"
     },
     {
-        "question": "¿Qué princesa pierde un zapato de cristal?",
-        "options": ["Aurora", "Cenicienta", "Tiana", "Moana"],
-        "answer": "Cenicienta"
+        "question": "¿Qué princesa fue criada por siete enanitos?",
+        "options": ["Blancanieves", "Cenicienta", "Mulán", "Jazmín"],
+        "answer": "Blancanieves"
     },
     {
-        "question": "¿Qué princesa tiene el cabello mágico y muy largo?",
-        "options": ["Rapunzel", "Elsa", "Mérida", "Pocahontas"],
-        "answer": "Rapunzel"
+        "question": "¿Qué princesa participa en una competencia de tiro con arco?",
+        "options": ["Mérida", "Tiana", "Aurora", "Moana"],
+        "answer": "Mérida"
     },
     {
-        "question": "¿Qué princesa besa a un sapo?",
-        "options": ["Tiana", "Bella", "Mulán", "Anna"],
-        "answer": "Tiana"
+        "question": "¿Qué princesa navega por el océano para salvar a su pueblo?",
+        "options": ["Moana", "Pocahontas", "Tiana", "Aurora"],
+        "answer": "Moana"
     }
 ]
 
@@ -106,6 +106,9 @@ if submitted:
     if st.button("🔄 Jugar nuevamente"):
         initialize_game()
         st.rerun()
+
+st.markdown("---")
+st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
 
 st.markdown("---")
 st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
