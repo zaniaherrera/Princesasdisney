@@ -8,54 +8,54 @@ st.set_page_config(page_title="Trivia de Farándula Peruana", page_icon="🎤", 
 # -----------------------------
 QUESTIONS = [
     {
-        "question": "¿Qué frase icónica popularizó Laura Bozzo en televisión?",
-        "options": ["¡Que pase el desgraciado!", "¡Fuera de aquí!", "¡No me grites!", "¡Esto es el colmo!"],
-        "answer": "¡Que pase el desgraciado!",
+        "question": "¿Qué famosa frase hizo viral Magaly Medina en sus programas de espectáculos?",
+        "options": ["Ampay", "No me importa", "Eso fue fuerte", "Qué vergüenza"],
+        "answer": "Ampay",
     },
     {
-        "question": "¿Qué cantante peruana es conocida como 'La Tigresa del Oriente'?",
-        "options": ["Judith Bustos", "Gisela Valcárcel", "Yola Polastri", "Monique Pardo"],
-        "answer": "Judith Bustos",
-    },
-    {
-        "question": "¿Quién fue conocida como la 'Señito' de la televisión peruana?",
-        "options": ["Gisela Valcárcel", "Magaly Medina", "Maju Mantilla", "Rebeca Escribens"],
-        "answer": "Gisela Valcárcel",
-    },
-    {
-        "question": "¿Qué conductora es famosa por su programa de espectáculos y los 'ampays'?",
-        "options": ["Magaly Medina", "Johanna San Miguel", "Tula Rodríguez", "Sheyla Rojas"],
+        "question": "¿Quién es conocida como la 'Urraca' de la televisión peruana?",
+        "options": ["Magaly Medina", "Gisela Valcárcel", "Tula Rodríguez", "Janet Barboza"],
         "answer": "Magaly Medina",
     },
     {
-        "question": "¿Qué personaje infantil fue interpretado por Yola Polastri?",
-        "options": ["La chica de la tele", "La reina de los niños", "La tía Yola", "La muñeca feliz"],
-        "answer": "La tía Yola",
+        "question": "¿Qué conductor hizo famosa la frase 'Mami, qué rica estás'?",
+        "options": ["Carlos Cacho", "Raúl Romero", "Andrés Hurtado", "Renzo Schuller"],
+        "answer": "Carlos Cacho",
     },
     {
-        "question": "¿Qué cantante peruano hizo famosa la frase 'No se llama amor'?",
-        "options": ["Pedro Suárez-Vértiz", "Gian Marco", "Christian Meier", "Raúl Romero"],
-        "answer": "Pedro Suárez-Vértiz",
+        "question": "¿Qué personaje televisivo es conocido como 'Chibolín'?",
+        "options": ["Andrés Hurtado", "Raúl Romero", "Adolfo Aguilar", "Mathías Brivio"],
+        "answer": "Andrés Hurtado",
     },
     {
-        "question": "¿Qué exfutbolista y figura mediática estuvo casado con Melissa Klug?",
-        "options": ["Jefferson Farfán", "Paolo Guerrero", "Roberto Martínez", "Juan Manuel Vargas"],
-        "answer": "Jefferson Farfán",
+        "question": "¿Qué modelo fue protagonista del famoso caso del 'Loco Vargas'?",
+        "options": ["Tilsa Lozano", "Milett Figueroa", "Sheyla Rojas", "Melissa Loza"],
+        "answer": "Tilsa Lozano",
     },
     {
-        "question": "¿Qué conductor hizo famosa la frase 'Habacilar'?",
-        "options": ["Raúl Romero", "Adolfo Aguilar", "Bruno Pinasco", "Carlos Galdós"],
+        "question": "¿Qué conductor lideró el programa juvenil 'Habacilar'?",
+        "options": ["Raúl Romero", "Bruno Pinasco", "Adolfo Aguilar", "Gian Piero Díaz"],
         "answer": "Raúl Romero",
     },
     {
-        "question": "¿Qué vedette fue protagonista de múltiples escándalos mediáticos en los 2000?",
-        "options": ["Susy Díaz", "Maricielo Effio", "Tilsa Lozano", "Milett Figueroa"],
+        "question": "¿Qué exvedette fue famosa por llevar su número al Congreso tatuado?",
+        "options": ["Susy Díaz", "Monique Pardo", "Gisela Valcárcel", "Mariella Zanetti"],
         "answer": "Susy Díaz",
     },
     {
-        "question": "¿Qué frase se asocia popularmente con Susy Díaz?",
-        "options": ["Vive la vida", "Me amo y no me importa", "Lo que pasa, pasa", "Todo por amor"],
-        "answer": "Me amo y no me importa",
+        "question": "¿Qué presentadora era conocida como 'La Señito'?",
+        "options": ["Gisela Valcárcel", "Mónica Zevallos", "Karen Schwarz", "Jessica Newton"],
+        "answer": "Gisela Valcárcel",
+    },
+    {
+        "question": "¿Qué personaje infantil hizo famosa Yola Polastri?",
+        "options": ["La tía Yola", "La reina mágica", "La muñeca feliz", "La chica dulce"],
+        "answer": "La tía Yola",
+    },
+    {
+        "question": "¿Qué frase se volvió icónica de Laura Bozzo?",
+        "options": ["¡Que pase el desgraciado!", "¡Fuera todos!", "¡No puede ser!", "¡Silencio!"],
+        "answer": "¡Que pase el desgraciado!",
     },
 ]
 
@@ -170,6 +170,3 @@ if st.session_state.submitted:
         st.warning("😄 Vas bien, pero necesitas más chismecito televisivo.")
     else:
         st.warning("📺 Hora de ver más farándula peruana y volver a intentarlo.")
-
-st.markdown("---")
-st.caption("Aplicativo creado en Streamlit | Trivia Disney 👑")
